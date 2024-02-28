@@ -1,0 +1,72 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.TituloHome {
+    text-align: center;
+}
+
+.bloquesDiv {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.Bloque1 {
+    width: calc(33.33% - 4em);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20em;
+    flex: 1;
+}
+
+.Imagen1 {
+    width: 20em;
+    height: 15em;
+    transition: 0.5s;
+}
+
+.Imagen1:hover {
+    width: 21em;
+    height: 16em;
+    transition: 0.5s;
+}
+
+.Mensaje1 {
+    width: 20em;
+    text-align:center;
+}
+
+.Bloque2{
+    width: calc(33.33% - 4em);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20em;
+    flex: 1;
+}
+
+.Imagen2 {
+    width: 20em;
+    height: 15em;
+    transition: 0.5s;
+}
+
+.Imagen2:hover {
+    width: 21em;
+    height: 16em;
+    transition: 0.5s;
+}
+
+.Mensaje2 {
+    width: 20em;
+    text-align:center;
+}

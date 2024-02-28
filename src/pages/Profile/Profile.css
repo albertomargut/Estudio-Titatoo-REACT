@@ -1,0 +1,38 @@
+.EditingData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.profileData {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.citasDiv {
+    width: 20em;
+    flex-wrap: wrap;
+}
+
+
+.buttonCita {
+    width: 20em;
+}
+
+.accordion-button {        
+    background-color: #6c757d;
+    color: white;   
+}
+
+.accordion-body{
+    background-color: rgba(219, 219, 219, 0.492); 
+}
+
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #6c757db4;
+}

@@ -1,0 +1,20 @@
+.RegisterDiv {
+    height: 25em;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.TituloRegister {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.RegisterForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}

@@ -1,0 +1,79 @@
+.artistPage {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+.pageTitle{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.artistDiv {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan en pantallas pequeñas */
+    justify-content: center;
+    gap: 2em;
+}
+
+.artistcard {
+    width: calc(33.33% - 4em); /* Utilizar un tercio del ancho del contenedor con un espacio entre tarjetas */
+    min-width: 20em; /* Ancho minimo para evitar que las tarjetas se vuelvan demasiado grandes */
+    flex: 1; /* Permitir que las tarjetas se ajusten según el espacio disponible */
+}
+
+.artistimg {
+    width: 100%;
+    height: 100%; /* Ajustar la altura automáticamente para mantener la relación de aspecto */
+}
+
+@media (max-width:800px) {
+    .artistDiv {
+        flex-direction: column;
+        align-items: center;        
+    }
+    .newAppointment {
+        flex-direction: column;
+        align-items: center;        
+    }
+    
+}
+
+.bodyCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+.appointmentForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.confirmationDate {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleConfirmation {
+    text-align: center;
+}
+
+.modalButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    margin-bottom: 2em;
+}
+
+

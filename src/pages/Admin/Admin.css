@@ -1,0 +1,62 @@
+.adminPage {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    gap: 2em;
+}
+
+.pageTitle{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.usersDiv {
+    width: 20em;
+    flex-wrap: wrap;
+}
+
+.headerAcc{
+    width: 100%;
+}
+
+.bodyAcc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.usercard {
+    width: calc(33.33% - 4em); /* Utilizar un tercio del ancho del contenedor con un espacio entre tarjetas */
+    min-width: 18em; /* Ancho minimo para evitar que las tarjetas se vuelvan demasiado grandes */
+    flex: 1; /* Permitir que las tarjetas se ajusten según el espacio disponible */
+  
+}
+
+.buttonsDivSip {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.buttonCitas {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    
+}
+
+
+
+.appointmentForm {
+    margin-top: 0.5em;
+}
