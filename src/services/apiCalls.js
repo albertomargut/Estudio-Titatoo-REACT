@@ -86,7 +86,7 @@ export const updateUser = async (token, id, data) => {
 //     return res;
 // }
 
-export const getAll = async (token, page, skip) => {
+export const getAll = async (token) => {
     const config = {
         headers: {
             Authorization: 'Bearer ' + token
@@ -98,7 +98,7 @@ export const getAll = async (token, page, skip) => {
 };
 
 
-export const getAllAppointments = async (token, page, skip) => {
+export const getAllAppointments = async (token) => {
     const config = {
         headers: {
             Authorization: 'Bearer ' + token

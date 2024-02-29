@@ -54,8 +54,8 @@ export const Register = () => {
         };
         
         //guardamos al igual que en el login nuestros datos de usuario logeado 
-        dispatch(login({ credentials: data }));
-        navigate("/home");
+        dispatch(login({ credentials : data}));
+        navigate("/");
 
       })
 

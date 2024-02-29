@@ -6,7 +6,7 @@ import { Appointments } from "../Appointments/Appointments"
 import { ArtistAppointments } from "../ArtistAppointments/ArtistAppointments"
 import { AdminAppointments } from "../AdminAppointments/AdminAppointments"
 import { Profile } from "../Profile/Profile"
-import { Admin } from "../Admin/Admin"
+// import { Admin } from "../Admin/Admin"
 import { Login } from "../Login/Login"
 
 
@@ -24,7 +24,7 @@ export const Body = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/artists" element={<Artists />} />
-                <Route path="/admin" element={<Admin />} />
+                {/* <Route path="/admin" element={<Admin />} /> */}
                 
             </Routes>
         </>

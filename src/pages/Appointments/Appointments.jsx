@@ -32,7 +32,6 @@ export const Appointments = () => {
   const navigate = useNavigate();
 
   const inputHandler = (event) => {
-    console.log("soy un event", event.target)
     setNewAppointment((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,

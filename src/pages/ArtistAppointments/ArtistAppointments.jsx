@@ -12,6 +12,7 @@ export const ArtistAppointments = () => {
 
   useEffect(() => {
     if (myAppointments.length === 0) {
+      console.log(myAppointments)
       getArtistsAppointments(token, id).then((myAppointments) => {
         setMyAppointments(myAppointments);
         
@@ -23,20 +24,20 @@ export const ArtistAppointments = () => {
     <Container>
       <h1 className="text-center mt-5 mb-4">Mis citas</h1>
       <Row xs={1} md={2} lg={3} className="g-4">
-        {myAppointments.map((appointment) => (
-          <Col key={appointment.id}>
+        {myAppointments.map((appointments) => (
+          <Col key={appointments.id}>
             <Card className="shadow-sm appointment-card" id="custom-card">
               <Card.Body>
                 <Card.Title className="text-center fs-5">
-                  {appointment.user.name} {appointment.user.last_name}
+                  {appointments.user.first_name} {appointments.user.last_name}
                 </Card.Title>
                 <hr />
                 <div className="text-center">
                   <p>
-                    <strong>Date:</strong> {appointment.appointment_date}
+                    <strong>Date:</strong> {appointments.date}
                   </p>
                   <p>
-                    <strong>Contact:</strong> {appointment.user.phone_number}
+                    <strong>Contact:</strong> {appointments.user.phone_number}
                   </p>
                 </div>
               </Card.Body>

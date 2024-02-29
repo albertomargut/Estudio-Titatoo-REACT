@@ -24,11 +24,11 @@ export const Artists = () => {
         {artists && artists.length > 0 ? (
           artists.map((artist) => {
             return (
-              <div key={artist.id} className="artist-card">
+              <div key={artists.id} className="artist-card">
                 <div className="artist-info">
                 <Avatar alt= {artist.user.first_name} src={`/static/images/avatar/${String(artist.id)}.jpg`} className="avatar"/>
                   <p className="artist-name">{artist.user.first_name} {artist.user.last_name}</p>
-                  <p className="artist-style">Estilo: {artist.tattoo_style}</p>
+                  <p className="artist-style">Estilo: {artists.tattoo_style}</p>
                   <p className="artist-experience">Años de experiencia: {artist.work_experience}</p>
                   <p className="artist-phone">Contacto: {artist.user.phone_number}</p>
                 </div>
