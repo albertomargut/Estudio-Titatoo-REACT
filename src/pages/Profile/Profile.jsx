@@ -16,10 +16,9 @@ export const Profile = () => {
   const navigate = useNavigate();
   const [Editable, setEditable] = useState(false);
   const [profileData, setProfileData] = useState({});
-  const [userUpdate, setUserUpdate] = useState({username: "", email: ""});
-  const [clientUpdate, setClientUpdate] = useState ({first_name: "", last_name: "", phone_number: ""});
-  const [artistUpdate, setArtistUpdate] = useState ({first_name: "", last_name: "", 
-  phone_number: "", tattoo_style: ""});
+  const [userUpdate, setUserUpdate] = useState({username: "", email: "", first_name: "", last_name: "", phone_number: ""});
+  // const [clientUpdate, setClientUpdate] = useState ({first_name: "", last_name: "", phone_number: ""});
+  // const [artistUpdate, setArtistUpdate] = useState ({first_name: "", last_name: "", phone_number: "", tattoo_style: ""});
   const userRdxData = useSelector(userData);
   const dispatch = useDispatch();
   const [Citas, setCitas] = useState(false)
@@ -39,9 +38,9 @@ export const Profile = () => {
     } else if (isClient){
       getClientProfile(token, id).then((res) => {
         setProfileData(res);
-        if (res.appointment.length > 0) {
-          setCitas(true)
-        }
+        // if (res.appointment.length > 0) {
+        //   setCitas(true)
+        // }
       });
     } else if (isAdmin){
       getUserProfile(token, id).then((res) => {
@@ -50,9 +49,9 @@ export const Profile = () => {
     } else {
       getArtistProfile(token, id).then((res) => {
         setProfileData(res);
-        if (res.appointment.length > 0) {
-          setCitas(true)
-        }
+        // if (res.appointment.length > 0) {
+        //   setCitas(true)
+        // }
       })
     }
   }, []);
@@ -64,15 +63,14 @@ export const Profile = () => {
 
   const buttonHandlerSave = () => {
 
-    if (decoded?.userRoles === "client" || decoded?.userRoles === "admin") {
-       //Gestionar que no se envien claves vacías a la llamada.
+    // if (decoded?.userRoles === "client" || decoded?.userRoles === "admin") {
+    //    //Gestionar que no se envien claves vacías a la llamada.
 
     userUpdate.username = userUpdate.username || profileData.username,
-    userUpdate.email = userUpdate.email || profileData.email,
-
-    clientUpdate.first_name = clientUpdate.first_name || profileData.first_name,
-    clientUpdate.last_name = clientUpdate.last_name || profileData.last_name,
-    clientUpdate.phone_number = clientUpdate.phone_number || profileData.phone_number,
+    userUpdate.email = userUpdate.email || profileData.email
+    userUpdate.first_name = userUpdate.first_name || profileData.first_name,
+    userUpdate.last_name = userUpdate.last_name || profileData.last_name,
+    userUpdate.phone_number = userUpdate.phone_number || profileData.phone_number,
 
     //----------------------------------------------------------------
 
@@ -81,55 +79,56 @@ export const Profile = () => {
         ...prevState,
         username: userUpdate.username || profileData.username,
         email: userUpdate.email || profileData.email,
+        first_name: userUpdate.first_name || profileData.first_name,
+        last_name: userUpdate.last_name || profileData.last_name,
+        phone_number: userUpdate.phone_number || profileData.phone_number,
       }))
     });
 
-    updateClient(token, id, clientUpdate).then((res) => {
-      setProfileData((prevState) => ({
-        ...prevState,
-        first_name: clientUpdate.first_name || profileData.first_name,
-        last_name: clientUpdate.last_name || profileData.last_name,
-        phone_number: clientUpdate.phone_number || profileData.phone_number,
-      }))
-    });
+    // updateClient(token, id, clientUpdate).then((res) => {
+    //   setProfileData((prevState) => ({
+    //     ...prevState,
+        
+    //   }))
+    // });
 
-    setEditable(false);
+    // setEditable(false);
 
 
-    } else {
-       //Gestionar que no se envien claves vacías a la llamada.
+    // } else {
+    //    //Gestionar que no se envien claves vacías a la llamada.
 
-    userUpdate.username = userUpdate.username || profileData.username,
-    userUpdate.email = userUpdate.email || profileData.email,
+    // userUpdate.username = userUpdate.username || profileData.username,
+    // userUpdate.email = userUpdate.email || profileData.email,
 
-    artistUpdate.first_name = artistUpdate.first_name || profileData.first_name,
-    artistUpdate.last_name = artistUpdate.last_name || profileData.last_name,
-    artistUpdate.phone_number = artistUpdate.phone_number || profileData.phone_number,
-    artistUpdate.tattoo_style = artistUpdate.tattoo_style || profileData.tattoo_style,
+    // artistUpdate.first_name = artistUpdate.first_name || profileData.first_name,
+    // artistUpdate.last_name = artistUpdate.last_name || profileData.last_name,
+    // artistUpdate.phone_number = artistUpdate.phone_number || profileData.phone_number,
+    // artistUpdate.tattoo_style = artistUpdate.tattoo_style || profileData.tattoo_style,
 
     //----------------------------------------------------------------
 
-    updateUser(token, id, userUpdate).then((res) => {
-      setProfileData((prevState) => ({
-        ...prevState,
-        username: userUpdate.username || profileData.username,
-        email: userUpdate.email || profileData.email,
-      }))
-    });
+    // updateUser(token, id, userUpdate).then((res) => {
+    //   setProfileData((prevState) => ({
+    //     ...prevState,
+    //     username: userUpdate.username || profileData.username,
+    //     email: userUpdate.email || profileData.email,
+    //   }))
+    // });
 
-    updateArtist(token, id, artistUpdate).then((res) => {
-      setProfileData((prevState) => ({
-        ...prevState,
-        first_name: artistUpdate.first_name || profileData.first_name,
-        last_name: artistUpdate.last_name || profileData.last_name,
-        phone_number: artistUpdate.phone_number || profileData.phone_number,
-        tattoo_style: artistUpdate.tattoo_style || profileData.tattoo_style,
-      }))
-    });
+    // updateArtist(token, id, artistUpdate).then((res) => {
+    //   setProfileData((prevState) => ({
+    //     ...prevState,
+    //     first_name: artistUpdate.first_name || profileData.first_name,
+    //     last_name: artistUpdate.last_name || profileData.last_name,
+    //     phone_number: artistUpdate.phone_number || profileData.phone_number,
+    //     tattoo_style: artistUpdate.tattoo_style || profileData.tattoo_style,
+    //   }))
+    // });
 
-    setEditable(false);
+    // setEditable(false);
 
-    }
+    // }
   }
 
   const inputHandlerUser = (event) => {
@@ -140,21 +139,21 @@ export const Profile = () => {
 
   };
 
-  const inputHandlerClientArtist = (event) => {
-    if (decoded?.userRoles === "client" || decoded?.userRoles === "admin") {
-      setClientUpdate((prevState) => ({
-            ...prevState,
-            [event.target.name]: event.target.value,
-          }));
-    }else {
-      setArtistUpdate((prevState) => ({
-        ...prevState,
-        [event.target.name]: event.target.value,
-      }));
+  // // const inputHandlerClientArtist = (event) => {
+  // //   if (decoded?.userRoles === "client" || decoded?.userRoles === "admin") {
+  // //     setClientUpdate((prevState) => ({
+  // //           ...prevState,
+  // //           [event.target.name]: event.target.value,
+  // //         }));
+  // //   }else {
+  // //     setArtistUpdate((prevState) => ({
+  // //       ...prevState,
+  // //       [event.target.name]: event.target.value,
+  // //     }));
 
-    }
+  // //   }
 
-  };
+  // };
 
   return (
     <div className="profileData">
@@ -203,29 +202,29 @@ export const Profile = () => {
                     placeholder={"escriba su nombre"}
                     type={"first_name"}
                     name={"first_name"}
-                    handler={inputHandlerClientArtist}
+                    handler={inputHandlerUser}
                   ></CustomInput>
-                  {profileData.tattoo_style? (
+                  {/* {profileData.tattoo_style? (
                    <CustomInput
                    placeholder={"escriba su estilo de tatuaje"}
                    type={"tattoo_style"}
                    name={"tattoo_style"}
                    handler={inputHandlerClientArtist}
-                 ></CustomInput>
-                  )
-                  : null}
+                 ></CustomInput> */}
+                  {/* )
+                  : null} */}
                   
                   <CustomInput
                     placeholder={"escriba su apellido"}
                     type={"last_name"}
                     name={"last_name"}
-                    handler={inputHandlerClientArtist}
+                    handler={inputHandlerUser}
                   ></CustomInput>
                   <CustomInput
                     placeholder={"escriba su teléfono"}
                     type={"phone_number"}
                     name={"phone_number"}
-                    handler={inputHandlerClientArtist}
+                    handler={inputHandlerUser}
                   ></CustomInput>
                   <br></br>
                   <Button variant="dark" onClick={() => buttonHandlerSave()} >Guardar cambios</Button>
@@ -321,3 +320,4 @@ export const Profile = () => {
     </div>
   );
 };
+

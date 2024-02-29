@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState: {
         credentials: {},
-        vecesLoginLogout: 0
+        // vecesLoginLogout: 0
     },
 
     // los reducers no son más que funciones que reciben el estado actual y la modificación que queremos 

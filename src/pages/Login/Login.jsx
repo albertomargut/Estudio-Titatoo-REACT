@@ -5,9 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { login, userData } from "../userSlice";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"
 import Button from "react-bootstrap/Button";
-
+import "./Login.css"
 export const Login = () => {
     const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -32,7 +31,7 @@ export const Login = () => {
     userLogin(credentials)
       .then((data) => {
         const decodedToken = jwtDecode(data.token);
-        
+
         const credentials = {
           token: data.token,
           userData: data.user,

@@ -38,17 +38,24 @@ console.log("Decoded", decoded);
                   <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                   <NavDropdown.Item href="register">Resgistrarse</NavDropdown.Item>
                 </>
-              ) : decoded.roles?.some(role => role.name === "admin") ? (
+              ) : decoded.userData.roles?.some(roles => roles.name === "admin") ? (
                 <>
                   <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
                   <NavDropdown.Item href="admin">Administrador Perfiles</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={() => logMeOut()}>Cerrar sesión</NavDropdown.Item>
                 </>
+              ) : decoded.userData.roles?.some(roles => roles.name === "artist") ? (
+                <>
+                  <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
+                  <NavDropdown.Item href="myappointmentsArtists">Mis citas</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={() => logMeOut()}>Cerrar sesión</NavDropdown.Item>
+                </>
               ) : (
                 <>
                   <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
-                  <NavDropdown.Item href="">Mis citas</NavDropdown.Item>
+                  <NavDropdown.Item href="myappointments">Mis citas</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={() => logMeOut()}>Cerrar sesión</NavDropdown.Item>
                 </>
