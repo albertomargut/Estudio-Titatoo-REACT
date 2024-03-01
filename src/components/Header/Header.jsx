@@ -24,9 +24,9 @@ export const Header = () => {
   };
 console.log("Decoded", decoded);
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" id="navbar">
+    <Navbar expand="lg" className="navbar">
       <Container>
-        <Navbar.Brand href="">Mi fabulosa APP</Navbar.Brand>
+        <Navbar.Brand href="">Titatoo Studio</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -42,6 +42,7 @@ console.log("Decoded", decoded);
                 <>
                   <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
                   <NavDropdown.Item href="admin">Administrador Perfiles</NavDropdown.Item>
+                  <NavDropdown.Item href="Allappointments">Citas</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={() => logMeOut()}>Cerrar sesión</NavDropdown.Item>
                 </>

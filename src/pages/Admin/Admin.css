@@ -1,0 +1,32 @@
+#custom-card {
+    background-color: #f8f9fa;  /* Fondo gris claro */
+    transition: box-shadow 0.3s ease-in-out;  /* Animación de transición en el resaltado */
+
+  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+   
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    position: relative;
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* Efecto de resaltado al pasar el cursor */
+    }
+  
+    .btn-danger {
+      background-color: #dc3545;  /* Color rojo para el botón de eliminar */
+      border-color: #dc3545;  /* Bordes rojos para el botón de eliminar */
+    }
+  
+    .btn-danger:hover {
+      background-color: #c82333;  /* Efecto de resaltado al pasar el cursor sobre el botón de eliminar */
+      border-color: #bd2130;  /* Color de borde resaltado para el botón de eliminar */
+    }
+  }
+
+#user-card:hover {
+    transition-duration: 1.25s;
+    box-shadow: 0 0 100px 12px grey;
+    cursor: crosshair;
+    z-index: 10;
+  }
+  

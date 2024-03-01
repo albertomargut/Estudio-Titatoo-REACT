@@ -1,38 +1,66 @@
-.EditingData {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-
 .profileData {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  .card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #343a40;
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .card-body {
+    text-align: left;
+  }
+  
+  .card-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
 
-.citasDiv {
-    width: 20em;
-    flex-wrap: wrap;
-}
-
-
-.buttonCita {
-    width: 20em;
-}
-
-.accordion-button {        
-    background-color: #6c757d;
-    color: white;   
-}
-
-.accordion-body{
-    background-color: rgba(219, 219, 219, 0.492); 
-}
-
-.accordion-button:not(.collapsed) {
-    color: white;
-    background-color: #6c757db4;
-}
+  .card-text {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .button-edit {
+    background-color: #343a40;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+  
+  .EditingData {
+    margin-top: 30px;
+  }
+  
+  .custom-input {
+    width: 100%;
+    padding: 120px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1.2rem;
+ 
+  }
+  
+  .button-save {
+    background-color: #343a40;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+  
