@@ -1,72 +1,68 @@
-.Home {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2em;
-    margin-top: 2em;
-    margin-left: 2em;
-    margin-right: 2em;
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-.TituloHome {
-    text-align: center;
+.Home {
+  text-align: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.TituloHome h1 {
+  font-size: 2.5em;
+  color: #343a40;
 }
 
 .bloquesDiv {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.Bloque1 {
-    width: calc(33.33% - 4em);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 20em;
-    flex: 1;
+.Bloque1,
+.Bloque2 {
+  width: 55%;
+  margin: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.Imagen1 {
-    width: 20em;
-    height: 15em;
-    transition: 0.5s;
-}
-
-.Imagen1:hover {
-    width: 21em;
-    height: 16em;
-    transition: 0.5s;
-}
-
-.Mensaje1 {
-    width: 20em;
-    text-align:center;
-}
-
-.Bloque2{
-    width: calc(33.33% - 4em);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 20em;
-    flex: 1;
-}
-
+.Imagen1,
 .Imagen2 {
-    width: 20em;
-    height: 15em;
-    transition: 0.5s;
+  max-width: 85%;
+  border-radius: 8px;
 }
 
-.Imagen2:hover {
-    width: 21em;
-    height: 16em;
-    transition: 0.5s;
-}
-
+.Mensaje1,
 .Mensaje2 {
-    width: 20em;
-    text-align:center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #6c757d;
+  line-height: 1.5;
+  text-align:justify;
+}
+
+
+.Mensaje3 {
+  font-size: 1em;
+  color: #6c757d;
+  line-height: 1.5;
+  text-align:center
+}
+
+
+/* Reglas de medios para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .Bloque1, .Bloque2 {
+    width: 100%;
+  }
 }

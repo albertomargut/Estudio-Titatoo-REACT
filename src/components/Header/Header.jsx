@@ -3,10 +3,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, userData } from "../../pages/userSlice";
+import "./Header.css"
+
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ console.log("Decoded", decoded);
   return (
     <Navbar expand="lg" className="navbar">
       <Container>
-        <Navbar.Brand href="">Titatoo Studio</Navbar.Brand>
+        <Navbar.Brand href="">Titattoo Studio</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

@@ -88,11 +88,11 @@ export const Profile = () => {
     <div className="profileData">
         <Card>
           {decoded.roles?.some(roles => roles.name === "admin")? (
-            <Card.Header as="h5">Estos son los datos de tu perfil de administrador 
+            <Card.Header as="h5">Estos son los datos de su perfil de administrador 
             { " " + profileData.first_name}
             </Card.Header>
           ):
-            <Card.Header as="h5">Estos son los datos de tu perfil 
+            <Card.Header as="h5">Estos son los datos de su perfil 
             { " " + profileData.first_name}
             </Card.Header>
           }
