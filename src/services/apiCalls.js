@@ -164,3 +164,19 @@ export const createNewAppointment = async (token, appointmentData) => {
     return res;
 
 };
+
+export const updateAppointment = async (token, id, updatedAppointment) => {
+    console.log(token, id, updatedAppointment);
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const res = await axios.patch(
+      `${API_URL}/api/appointments/UpdateAppointment/${id}`,
+      updatedAppointment,
+      config
+    );
+    return res.data;
+  };
+  

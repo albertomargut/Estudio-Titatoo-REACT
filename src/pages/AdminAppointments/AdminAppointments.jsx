@@ -14,6 +14,7 @@ export const AdminAppointments = () => {
     if (appointments.length === 0) {
       getAllAppointments(token)
         .then((res) => {
+          console.log("hola", res.results)
           setAppointments(res.results);
         })
         .catch((error) => {
@@ -25,6 +26,7 @@ export const AdminAppointments = () => {
   const removeButtonHandler = (id) => {
     deleteAppointment(token, id).then(() => {
       setAppointments(appointments.filter((appointment) => appointment.id !== id));
+      
     });
   };
 
@@ -37,12 +39,12 @@ export const AdminAppointments = () => {
             <Col key={`${appointment.id}-${appointment.date}-${appointment.time}`}>
               <Card className="shadow-sm appointment-card" id="custom-card">
                 <Card.Body>
-                  <Card.Title className="text-center fs-5">Artist: {appointment.artist_name}</Card.Title>
+                  <Card.Title className="text-center fs-5">Artist: {appointment.artist.id}</Card.Title>
                   <hr />
                   <div className="text-center">
                     <p><strong>Date:</strong> {appointment.date}</p>
                     <p><strong>Time:</strong> {appointment.time}</p>
-                    <p><strong>Customer:</strong> {appointment.user_name} {appointment.user_last_name}</p>
+                    <p><strong>Customer:</strong> {appointment.client_id}</p>
                   </div>
                   <Button variant="danger" size="sm" onClick={() => removeButtonHandler(appointment.id)}>Delete</Button>
                 </Card.Body>

@@ -11,7 +11,7 @@ import Card from "react-bootstrap/Card";
 
 export const Appointments = () => {
   const userRdxData = useSelector(userData);
-  const clientId = userRdxData.credentials.userData.id;
+  const clientId = userRdxData.credentials.userData;
   const [newAppointment, setNewAppointment] = useState({
     client_id: clientId,
     artist_id: "",
@@ -24,7 +24,7 @@ export const Appointments = () => {
   useEffect(() => {
     if (artists.length === 0) {
       getArtists().then((artists) => {
-        console.log(artists); // Imprime los datos de artists
+    
         setArtists(artists);
       });
     }
@@ -48,11 +48,14 @@ export const Appointments = () => {
 
     createNewAppointment(token, newAppointment)
       .then((res) => {
+       
         const decodedToken = jwtDecode(token);
+        console.log("hola", decodedToken);
         const data = {
           token: token,
           userData: data.user,
           decodedToken,
+          // userData: decodedToken,
         };
 
         setTimeout(() => {

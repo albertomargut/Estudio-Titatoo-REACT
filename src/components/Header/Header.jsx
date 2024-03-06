@@ -57,6 +57,7 @@ console.log("Decoded", decoded);
               ) : (
                 <>
                   <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
+                  <NavDropdown.Item href="newappointments">Crear citas</NavDropdown.Item>
                   <NavDropdown.Item href="myappointments">Mis citas</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={() => logMeOut()}>Cerrar sesión</NavDropdown.Item>
