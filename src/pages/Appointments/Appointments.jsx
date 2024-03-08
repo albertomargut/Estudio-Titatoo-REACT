@@ -11,10 +11,10 @@ import Card from "react-bootstrap/Card";
 
 export const Appointments = () => {
   const userRdxData = useSelector(userData);
-  const userId = userRdxData.credentials.userData.id;
+  const clientId = userRdxData.credentials.userData.client.id;
   console.log(userRdxData.credentials)
   const [newAppointment, setNewAppointment] = useState({
-    client_id:userId,
+    client_id:clientId,
     artist_id: "",
     time: "",
     date: "",

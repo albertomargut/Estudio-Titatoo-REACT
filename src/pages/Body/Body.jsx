@@ -9,25 +9,33 @@ import { AdminAppointments } from "../AdminAppointments/AdminAppointments"
 import { Profile } from "../Profile/Profile"
 import { Admin } from "../Admin/Admin"
 import { Login } from "../Login/Login"
+import { userData } from "../userSlice"
+import { useSelector } from "react-redux"
 
 
 export const Body = () => {
+    const userRdxData = useSelector(userData)
+    const isLoggedIn = userRdxData.credentials.token
+    console.log("is Logged", isLoggedIn)
+
 
     return (
         <>
             <Routes>
                 <Route path="*" element={<Navigate to="/" />} />
                 <Route path="/" element={<Home />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login/>}/>
+                {isLoggedIn && (<>
                 <Route path="/newappointments" element={<Appointments/>}/>
                 <Route path="/myappointments" element={<ClientAppointments/>}/>
                 <Route path="/myappointmentsArtists" element={<ArtistAppointments/>}/>
                 <Route path="/Allappointments" element={<AdminAppointments/>}/>
-                <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/artists" element={<Artists />} />
                 <Route path="/admin" element={<Admin />} />
-                
+                </>
+                )}
             </Routes>
         </>
     )

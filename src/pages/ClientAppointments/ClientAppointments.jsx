@@ -10,7 +10,7 @@ import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 export const ClientAppointments = () => {
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
-  const myId = userRdxData.credentials.userData.userId;
+  const myId = userRdxData.credentials.userData.client.id;
 
   const [myAppointments, setMyAppointments] = useState([]);
 
