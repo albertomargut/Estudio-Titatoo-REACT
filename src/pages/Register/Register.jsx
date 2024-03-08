@@ -52,6 +52,7 @@ export const Register = () => {
           userData: data.user,
           decodedToken,
         };
+       
         
         //guardamos al igual que en el login nuestros datos de usuario logeado 
         dispatch(login({ credentials : data}));

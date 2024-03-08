@@ -23,7 +23,7 @@ export const Artists = () => {
         {artists && artists.length > 0 ? (
           artists.map((artist) => {
             return (
-              <div key={artists.id} className="artist-card">
+              <div key={artist.id} className="artist-card">
                 <div className="artist-info">
                   <Avatar
                     alt={artist.user.first_name}

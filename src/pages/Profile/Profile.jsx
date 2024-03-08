@@ -27,7 +27,6 @@ export const Profile = () => {
   
 
   useEffect(() => {
-    console.log("hola ee", decoded.roles)
     
     const isClient = decoded.roles.some(role => role.name === "client")
     const isAdmin = decoded.roles.some(role => role.name === "admin")
@@ -89,7 +88,7 @@ export const Profile = () => {
   return (
     <div className="profileData">
         <Card>
-          {decoded.roles?.some(role => role.name === "admin")? (
+          {decoded.roles.some(role => role.name === "admin")? (
             <Card.Header as="h5">Estos son los datos de su perfil de administrador 
             { " " + profileData.first_name}
             </Card.Header>

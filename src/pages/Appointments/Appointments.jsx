@@ -11,9 +11,10 @@ import Card from "react-bootstrap/Card";
 
 export const Appointments = () => {
   const userRdxData = useSelector(userData);
-  const clientId = userRdxData.credentials.userData;
+  const userId = userRdxData.credentials.userData.id;
+  console.log(userRdxData.credentials)
   const [newAppointment, setNewAppointment] = useState({
-    client_id: clientId,
+    client_id:userId,
     artist_id: "",
     time: "",
     date: "",
@@ -23,8 +24,9 @@ export const Appointments = () => {
   
   useEffect(() => {
     if (artists.length === 0) {
+      
       getArtists().then((artists) => {
-    
+        
         setArtists(artists);
       });
     }
@@ -53,9 +55,9 @@ export const Appointments = () => {
         console.log("hola", decodedToken);
         const data = {
           token: token,
-          userData: data.user,
-          decodedToken,
-          // userData: decodedToken,
+          // userData: data.user,
+          // decodedToken,
+          userData: decodedToken,
         };
 
         setTimeout(() => {
