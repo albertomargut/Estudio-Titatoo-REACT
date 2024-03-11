@@ -18,7 +18,6 @@ export const ClientAppointments = () => {
   useEffect(() => {
     getMyAppointments(token, myId)
       .then((response) => {
-        console.log("API Response:", response);
         if (response && response.results) {
           const appointments = response.results;
           setMyAppointments(appointments);
@@ -40,7 +39,7 @@ export const ClientAppointments = () => {
   const handleSaveAppointment = (index) => {
     const appointment = myAppointments[index];
     const { id, date, time } = appointment;
-    console.log("e", appointment);
+  
 
     if (!appointment || typeof appointment.id === "undefined") {
       console.error("Error: Appointment id is missing or undefined.");
