@@ -9,8 +9,7 @@ import "./Register.css";
 import Button from "react-bootstrap/Button";
 
 export const Register = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
     username: "",
     email: "",
@@ -20,10 +19,7 @@ export const Register = () => {
     phone_number: "",
   });
 
-  // instancio redux en modo escritura
   const dispatch = useDispatch();
-
-  // // instancio redux en modo lectura
   const userRdxData = useSelector(userData);
 
   const inputHandler = (event) => {
@@ -34,41 +30,43 @@ export const Register = () => {
   };
 
   const buttonHandler = () => {
-    
-    //definimos las credenciales para el futuro login con los datos de registro
-    const credentials = {
-      email: registerData.email,
-      password: registerData.password,
-    }; 
-
-    RegisterUser(registerData).then(() => {
-    //hacemos login con el usuario recien creado cuando tengamos la respuesta de nuestro registro
-    userLogin(credentials)
-      .then((token) => {
-        const decodedToken = jwtDecode(token);
-
-        const data = {
-          token: token,
-          userData: data.user,
-          decodedToken,
+    RegisterUser(registerData)
+      .then(() => {
+        const credentials = {
+          email: registerData.email,
+          password: registerData.password,
         };
-       
-        
-        //guardamos al igual que en el login nuestros datos de usuario logeado 
-        dispatch(login({ credentials : data}));
-        navigate("/");
 
+        return userLogin(credentials);
       })
+      .then((response) => {
+        // Verificamos si response incluye un campo "token"
+        const token = response?.token || "";
+
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          console.log(decodedToken);
+  
+          const data = {
+            token: token,
+            userData: decodedToken,
+            decodedToken,
+          };
+  
+
+        //guardamos al igual que en el login nuestros datos de usuario logeado
+        dispatch(login({ credentials: data }));
+        navigate("/");
+       } else {
+        throw new Error('Token no válido en la respuesta.');
+      }
+    })
 
       .catch((err) => console.error("ha ocurrido un error", err));
-    });
-
-   
   };
 
   return (
     <div className="RegisterDiv">
-
       <div className="TituloRegister">
         <h1>REGÍSTRATE CON NOSOTROS</h1>
       </div>
@@ -77,47 +75,48 @@ export const Register = () => {
 
       <div className="RegisterForm">
         <CustomInput
-        placeholder={"escriba un nickname"}
-        type={"username"}
-        name={"username"}
-        handler={inputHandler}
-      ></CustomInput>
-      <CustomInput
-        placeholder={"introduce tu email"}
-        type={"email"}
-        name={"email"}
-        handler={inputHandler}
-      ></CustomInput>
-      <CustomInput
-        placeholder={"escriba su contraseña"}
-        type={"password"}
-        name={"password"}
-        handler={inputHandler}
-      ></CustomInput>
-      <CustomInput
-        placeholder={"escriba su nombre"}
-        type={"first_name"}
-        name={"first_name"}
-        handler={inputHandler}
-      ></CustomInput>
-      <CustomInput
-        placeholder={"escriba su apellido"}
-        type={"last_name"}
-        name={"last_name"}
-        handler={inputHandler}
-      ></CustomInput>
-      <CustomInput
-        placeholder={"escriba su teléfono"}
-        type={"phone_number"}
-        name={"phone_number"}
-        handler={inputHandler}
-      ></CustomInput>
+          placeholder={"escriba un nickname"}
+          type={"username"}
+          name={"username"}
+          handler={inputHandler}
+        ></CustomInput>
+        <CustomInput
+          placeholder={"introduce tu email"}
+          type={"email"}
+          name={"email"}
+          handler={inputHandler}
+        ></CustomInput>
+        <CustomInput
+          placeholder={"escriba su contraseña"}
+          type={"password"}
+          name={"password"}
+          handler={inputHandler}
+        ></CustomInput>
+        <CustomInput
+          placeholder={"escriba su nombre"}
+          type={"first_name"}
+          name={"first_name"}
+          handler={inputHandler}
+        ></CustomInput>
+        <CustomInput
+          placeholder={"escriba su apellido"}
+          type={"last_name"}
+          name={"last_name"}
+          handler={inputHandler}
+        ></CustomInput>
+        <CustomInput
+          placeholder={"escriba su teléfono"}
+          type={"phone_number"}
+          name={"phone_number"}
+          handler={inputHandler}
+        ></CustomInput>
       </div>
-      
+
       <br></br>
 
-      <Button variant="dark" onClick={() => buttonHandler()} >CREAR PERFIL</Button>
-      
+      <Button variant="dark" onClick={() => buttonHandler()}>
+        CREAR PERFIL
+      </Button>
     </div>
   );
 };

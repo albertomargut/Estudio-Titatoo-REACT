@@ -12,7 +12,7 @@ import Card from "react-bootstrap/Card";
 export const Appointments = () => {
   const userRdxData = useSelector(userData);
   const clientId = userRdxData.credentials.userData.client.id;
-  console.log(userRdxData.credentials)
+
   const [newAppointment, setNewAppointment] = useState({
     client_id:clientId,
     artist_id: "",
@@ -52,7 +52,7 @@ export const Appointments = () => {
       .then((res) => {
        
         const decodedToken = jwtDecode(token);
-        console.log("hola", decodedToken);
+     
         const data = {
           token: token,
           // userData: data.user,
@@ -87,7 +87,7 @@ export const Appointments = () => {
                 value={newAppointment.artist_id}
                 onChange={inputHandler}
               >
-                <option value="">Select an artist</option>
+                <option value="">Elige tu tatuador</option>
                 {artists.map((artists) => (
                   <option key={artists.id} value={artists.id}>
                     {artists.user.first_name} {artists.user.last_name}

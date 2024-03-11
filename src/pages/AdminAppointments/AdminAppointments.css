@@ -1,6 +1,6 @@
 #custom-card {
-    background-color: rgba(0, 0, 0, 0.7); /* Ajusta el valor alfa (último número) según lo deseado */
-    color: #a4a4a4; /* Color del título */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #a4a4a4; 
     border-radius: 4%;
 }
 

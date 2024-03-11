@@ -13,7 +13,7 @@ export const Admin = () => {
   useEffect(() => {
     if (users.length === 0) {
       getAll(token).then((res) => {
-        console.log("hola", res);
+       
         setUsers(res);
       });
     }
@@ -25,7 +25,6 @@ export const Admin = () => {
     });
   };
 
-  console.log(users);
   return (
     <div className="container">
       <h1 className="text-center mt-4 mb-4">Usuarios</h1>
@@ -37,14 +36,13 @@ export const Admin = () => {
                 <Card.Body>
                   <Card.Title>{`${user.first_name} ${user.last_name}`}</Card.Title>
                   <Card.Text>Email: {user.email}</Card.Text>
-                  <Card.Text>Phone: {user.phone_number}</Card.Text>
-                  {/* Additional card text or information can be added here */}
+                  <Card.Text>Móvil: {user.phone_number}</Card.Text>
                   <Button
                     variant="danger"
                     size="sm"
                     onClick={() => removeButtonHandler(user.id)}
                   >
-                    Delete
+                    Borrar
                   </Button>
                 </Card.Body>
               </Card>

@@ -16,7 +16,7 @@ import { useSelector } from "react-redux"
 export const Body = () => {
     const userRdxData = useSelector(userData)
     const isLoggedIn = userRdxData.credentials.token
-    console.log("is Logged", isLoggedIn)
+  
 
 
     return (
@@ -26,13 +26,13 @@ export const Body = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/artists" element={<Artists />} />
                 {isLoggedIn && (<>
                 <Route path="/newappointments" element={<Appointments/>}/>
                 <Route path="/myappointments" element={<ClientAppointments/>}/>
                 <Route path="/myappointmentsArtists" element={<ArtistAppointments/>}/>
                 <Route path="/Allappointments" element={<AdminAppointments/>}/>
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/artists" element={<Artists />} />
                 <Route path="/admin" element={<Admin />} />
                 </>
                 )}

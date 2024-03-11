@@ -1,11 +1,12 @@
-import "./ClientAppointments.css"
-import { getUserProfile, updateUser, getMyAppointments, updateAppointment, deleteAppointment} from "../../services/apiCalls";
+import {
+  getMyAppointments,
+  updateAppointment,
+  deleteAppointment,
+} from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
-
-
 
 export const ClientAppointments = () => {
   const userRdxData = useSelector(userData);
@@ -15,20 +16,20 @@ export const ClientAppointments = () => {
   const [myAppointments, setMyAppointments] = useState([]);
 
   useEffect(() => {
-    getUserProfile(token, myId).then((res) => {
-      setProfileData(res);
-      setEditableData(res);
-    });
-
     getMyAppointments(token, myId)
-      .then((appointments) => {
-        setMyAppointments(appointments);
+      .then((response) => {
+        console.log("API Response:", response);
+        if (response && response.results) {
+          const appointments = response.results;
+          setMyAppointments(appointments);
+        } else {
+          console.error("Invalid response format:", response.data);
+        }
       })
       .catch((error) => {
         console.error("Error fetching appointments:", error);
       });
   }, [token, myId]);
-
 
   const handleEditAppointment = (index) => {
     const appointmentsCopy = [...myAppointments];
@@ -39,12 +40,28 @@ export const ClientAppointments = () => {
   const handleSaveAppointment = (index) => {
     const appointment = myAppointments[index];
     const { id, date, time } = appointment;
+    console.log("e", appointment);
+
+    if (!appointment || typeof appointment.id === "undefined") {
+      console.error("Error: Appointment id is missing or undefined.");
+      return;
+    }
+
     updateAppointment(token, id, { date, time })
       .then((updatedAppointment) => {
+        // setMyAppointments((prevAppointments) => {
+        //   const updatedAppointments = [...prevAppointments];
+        //   updatedAppointments[index] = {
+        //     ...updatedAppointment,
+        //     editable: false,
+        //   };
+        //   return updatedAppointments;
+        // });
+        // window.location.reload();
         const updatedAppointments = [...myAppointments];
-        updatedAppointments[index] = { ...updatedAppointment, editable: false };
+        updatedAppointments[index] = { ...updatedAppointment, editable: true };
         setMyAppointments(updatedAppointments);
-        window.location.reload(); // Recargar la página después de guardar el nuevo appointment
+        window.location.reload(); // Recargar la página
       })
       .catch((error) => {
         console.error("Error updating appointment:", error);
@@ -64,83 +81,87 @@ export const ClientAppointments = () => {
         console.error("Error deleting appointment:", error);
       });
   };
-  console.log();
+
   return (
-    <>  
-    <div className="body">  
-      {/* Mostrar los appointments en un cuadro aparte */}
-      {myAppointments.length > 0 && (
-        <Container className="mt-5">
-          <h3 className="text-center mb-4">Next Sessions</h3>
-          <Row xs={1} md={2} lg={3} className="g-4">
-            {myAppointments.map((appointment, index) => (
-              <Col key={index}>
-                <Card className="h-100" id="custom-card-profile">
-                  <Card.Body>
-                    <Card.Title>Artist: {appointment.artist.first_name}</Card.Title>
-                    <Card.Text>
-                      <span className="font-weight-bold">Date:</span>{" "}
-                      {appointment.editable ? (
-                        <Form.Control
-                          type="date"
-                          value={appointment.date}
-                          onChange={(e) => {
-                            const value = e.target.value;
-                            setMyAppointments((prevAppointments) =>
-                              prevAppointments.map((app, i) =>
-                                i === index ? { ...app, date: value } : app
-                              )
-                            );
-                          }}
-                        />
-                      ) : (
-                        appointment.date
-                      )}
-                      <br />
-                      <span className="font-weight-bold">Time:</span>{" "}
-                      {appointment.editable ? (
-                        <Form.Control
-                          type="time"
-                          value={appointment.time}
-                          onChange={(e) => {
-                            const value = e.target.value;
-                            setMyAppointments((prevAppointments) =>
-                              prevAppointments.map((app, i) =>
-                                i === index ? { ...app, time: value } : app
-                              )
-                            );
-                          }}
-                        />
-                      ) : (
-                        appointment.time
-                      )}
-                    </Card.Text>
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        if (appointment.editable) {
-                          handleSaveAppointment(index);
-                        } else {
-                          handleEditAppointment(index);
-                        }
-                      }}
-                    >
-                      {appointment.editable ? "Save" : "Reschedule"}
-                    </Button>
-                    <Button
-                      variant="danger" // O el estilo que desees para el botón de cancelar
-                      onClick={() => cancelButtonHandler(appointment.id)}
-                    >
-                      Cancel
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      )}
-      </div> 
-    </>
+    <Container>
+      <h3 className="text-center mt-5 mb-4">Mis citas</h3>
+      <Row xs={1} md={2} lg={3} className="g-4">
+        {myAppointments && myAppointments.length > 0 ? (
+          myAppointments.map((appointment, index) => (
+            <Col key={index}>
+              <Card className="shadow-sm appointment-card" id="custom-card">
+                <Card.Body>
+                  <Card.Title className="text-center fs-5">
+                    Tatuador:{" "}
+                    {appointment.artist && appointment.artist.user
+                      ? `${appointment.artist.user.first_name} ${appointment.artist.user.last_name}`
+                      : "N/A"}
+                  </Card.Title>
+                  <Card.Text>
+                    <span className="font-weight-bold">Día:</span>{" "}
+                    {appointment.editable ? (
+                      <Form.Control
+                        type="date"
+                        value={appointment.date || ""}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          setMyAppointments((prevAppointments) =>
+                            prevAppointments.map((app, i) =>
+                              i === index ? { ...app, date: value } : app
+                            )
+                          );
+                        }}
+                      />
+                    ) : (
+                      appointment.date || "N/A"
+                    )}
+                    <br />
+                    <span className="font-weight-bold">Hora:</span>{" "}
+                    {appointment.editable ? (
+                      <Form.Control
+                        type="time"
+                        value={appointment.time || ""}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          setMyAppointments((prevAppointments) =>
+                            prevAppointments.map((app, i) =>
+                              i === index ? { ...app, time: value } : app
+                            )
+                          );
+                        }}
+                      />
+                    ) : (
+                      appointment.time || "N/A"
+                    )}
+                  </Card.Text>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      if (appointment.editable) {
+                        handleSaveAppointment(index);
+                      } else {
+                        handleEditAppointment(index);
+                      }
+                    }}
+                  >
+                    {appointment.editable ? "Guardar" : "Cambiar cita"}
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => cancelButtonHandler(appointment.id)}
+                  >
+                    Cancelar cita
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        ) : (
+          <Col>
+            <p className="text-center">No tienes citas programadas.</p>
+          </Col>
+        )}
+      </Row>
+    </Container>
   );
 };

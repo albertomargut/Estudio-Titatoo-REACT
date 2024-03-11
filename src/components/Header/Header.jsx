@@ -23,7 +23,7 @@ export const Header = () => {
       navigate("/");
     });
   };
-console.log("Decoded", decoded);
+
   return (
     <Navbar expand="lg" className="navbar">
       <Container>

@@ -14,10 +14,8 @@ export const Login = () => {
     password: "",
   });
 
-  // instancio redux en modo escritura
+  
   const dispatch = useDispatch();
-
-  // instancio redux en modo lectura
   const userRdxData = useSelector(userData);
 
   const inputHandler = (event) => {

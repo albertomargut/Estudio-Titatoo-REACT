@@ -15,7 +15,7 @@ export const AdminAppointments = () => {
     if (appointments.length === 0) {
       getAllAppointments(token)
         .then((res) => {
-          console.log("hola", res.results)
+        
           setAppointments(res.results);
         })
         .catch((error) => {
@@ -33,28 +33,28 @@ export const AdminAppointments = () => {
 
   return (
     <Container>
-      <h1 className="text-center mt-4 mb-4">All Appointments</h1>
+      <h1 className="text-center mt-4 mb-4">Todas las citas</h1>
       <Row xs={1} md={2} lg={3} className="g-4">
         {appointments && appointments.length > 0 ? (
           appointments.map((appointments) => (
             <Col key={`${appointments.id}-${appointments.date}-${appointments.time}`}>
               <Card className="shadow-sm appointment-card" id="custom-card">
                 <Card.Body>
-                  <Card.Title className="text-center fs-5">Artist: {appointments.artist.user.first_name} {appointments.artist.user.last_name}</Card.Title>
+                  <Card.Title className="text-center fs-5">Tatuador: {appointments.artist.user.first_name} {appointments.artist.user.last_name}</Card.Title>
                   <hr />
                   <div className="text-center">
-                    <p><strong>Date:</strong> {appointments.date}</p>
-                    <p><strong>Time:</strong> {appointments.time}</p>
-                    <p><strong>Customer:</strong> {appointments.client.user.first_name} {appointments.client.user.last_name}</p>
+                    <p><strong>Día:</strong> {appointments.date}</p>
+                    <p><strong>Hora:</strong> {appointments.time}</p>
+                    <p><strong>Cliente:</strong> {appointments.client.user.first_name} {appointments.client.user.last_name}</p>
                   </div>
-                  <Button variant="danger" size="sm" onClick={() => removeButtonHandler(appointments.id)}>Delete</Button>
+                  <Button variant="danger" size="sm" onClick={() => removeButtonHandler(appointments.id)}>Borrar </Button>
                 </Card.Body>
               </Card>
             </Col>
           ))
         ) : (
           <Col>
-            <p className="text-center">No appointments available.</p>
+            <p className="text-center">No se encuentran citas.</p>
           </Col>
         )}
       </Row>
