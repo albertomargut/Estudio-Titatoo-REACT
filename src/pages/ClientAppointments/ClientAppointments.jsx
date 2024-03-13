@@ -12,6 +12,7 @@ export const ClientAppointments = () => {
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
   const myId = userRdxData.credentials.userData.client.id;
+ 
 
   const [myAppointments, setMyAppointments] = useState([]);
 
@@ -48,15 +49,7 @@ export const ClientAppointments = () => {
 
     updateAppointment(token, id, { date, time })
       .then((updatedAppointment) => {
-        // setMyAppointments((prevAppointments) => {
-        //   const updatedAppointments = [...prevAppointments];
-        //   updatedAppointments[index] = {
-        //     ...updatedAppointment,
-        //     editable: false,
-        //   };
-        //   return updatedAppointments;
-        // });
-        // window.location.reload();
+       
         const updatedAppointments = [...myAppointments];
         updatedAppointments[index] = { ...updatedAppointment, editable: true };
         setMyAppointments(updatedAppointments);

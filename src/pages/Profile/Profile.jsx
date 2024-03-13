@@ -21,8 +21,11 @@ export const Profile = () => {
 
 
   const token = userRdxData.credentials.token;
-  const id = userRdxData.credentials.userData?.id;
-  const decoded = userRdxData.credentials?.userData;
+  const id = userRdxData.credentials.userData.id;
+  const decoded = userRdxData.credentials.userData;
+  
+  
+  
   
   
 

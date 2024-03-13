@@ -9,6 +9,7 @@ export const AdminAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const userRdxData = useSelector(userData);
   const token = userRdxData.credentials.token;
+
   
 
   useEffect(() => {

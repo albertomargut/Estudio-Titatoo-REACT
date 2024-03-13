@@ -8,25 +8,22 @@ import { jwtDecode } from "jwt-decode";
 import { Form, Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
-
 export const Appointments = () => {
   const userRdxData = useSelector(userData);
-  const clientId = userRdxData.credentials.userData.client.id;
+  const clientId = userRdxData.credentials.userData.client;
+
 
   const [newAppointment, setNewAppointment] = useState({
-    client_id:clientId,
+    client_id: clientId,
     artist_id: "",
     time: "",
     date: "",
-    
   });
   const [artists, setArtists] = useState([]);
-  
+
   useEffect(() => {
     if (artists.length === 0) {
-      
       getArtists().then((artists) => {
-        
         setArtists(artists);
       });
     }
@@ -50,9 +47,8 @@ export const Appointments = () => {
 
     createNewAppointment(token, newAppointment)
       .then((res) => {
-       
         const decodedToken = jwtDecode(token);
-     
+
         const data = {
           token: token,
           // userData: data.user,
@@ -70,59 +66,58 @@ export const Appointments = () => {
   };
 
   return (
-    
     <div className="container">
       <Card>
-      <div className="row justify-content-center">
-        <div className="col-lg-6">
-        <Card.Header as="h5">ESTABLEZCA SU CITA
-            </Card.Header>
-        <Card.Body>
-          <Form className="mt-5">
-            <Form.Group controlId="artist_id">
-              <Form.Label>Elige tatuador</Form.Label>
-              <Form.Control
-                as="select"
-                name="artist_id"
-                value={newAppointment.artist_id}
-                onChange={inputHandler}
-              >
-                <option value="">Elige tu tatuador</option>
-                {artists.map((artists) => (
-                  <option key={artists.id} value={artists.id}>
-                    {artists.user.first_name} {artists.user.last_name}
-                  </option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group controlId="date">
-              <Form.Label>Fecha:</Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                value={newAppointment.date}
-                onChange={inputHandler}
-              />
-            </Form.Group>
-            <Form.Group controlId="time">
-              <Form.Label>Hora:</Form.Label>
-              <Form.Control
-                type="time"
-                name="time"
-                value={newAppointment.time}
-                onChange={inputHandler}
-              />
-            </Form.Group>
-           
-            <Button variant="dark" onClick={buttonHandler}>
-              Confirmar
-            </Button>
-          </Form>
-        </Card.Body>
+        <div className="row justify-content-center">
+          <div className="col-lg-6">
+            <Card.Header as="h5">ESTABLEZCA SU CITA</Card.Header>
+            <Card.Body>
+              <Form className="mt-5">
+                <Form.Group controlId="artist_id">
+                  <Form.Label>Elige tatuador</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="artist_id"
+                    value={newAppointment.artist_id}
+                    onChange={inputHandler}
+                  >
+                    <option value="">Elige tu tatuador</option>
+                    {artists &&
+                      artists.length > 0 &&
+                      artists.map((artist) => (
+                        <option key={artist.id} value={artist.id}>
+                          {artist.user.first_name} {artist.user.last_name}
+                        </option>
+                      ))}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="date">
+                  <Form.Label>Fecha:</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="date"
+                    value={newAppointment.date}
+                    onChange={inputHandler}
+                  />
+                </Form.Group>
+                <Form.Group controlId="time">
+                  <Form.Label>Hora:</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="time"
+                    value={newAppointment.time}
+                    onChange={inputHandler}
+                  />
+                </Form.Group>
+
+                <Button variant="dark" onClick={buttonHandler}>
+                  Confirmar
+                </Button>
+              </Form>
+            </Card.Body>
+          </div>
         </div>
-      </div>
       </Card>
     </div>
-    
   );
 };

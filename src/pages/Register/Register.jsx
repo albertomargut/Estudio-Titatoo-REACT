@@ -26,8 +26,10 @@ export const Register = () => {
     setRegisterData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
+     
     }));
   };
+
 
   const buttonHandler = () => {
     RegisterUser(registerData)
@@ -40,18 +42,22 @@ export const Register = () => {
         return userLogin(credentials);
       })
       .then((response) => {
+       
         // Verificamos si response incluye un campo "token"
-        const token = response?.token || "";
+        const token = response.token || "";
 
         if (token) {
           const decodedToken = jwtDecode(token);
+         
       
   
           const data = {
             token: token,
-            userData: decodedToken,
+            userData: response.user,
             decodedToken,
           };
+          
+
   
 
         //guardamos al igual que en el login nuestros datos de usuario logeado
